@@ -16,6 +16,7 @@ def has_only_lemmas(text, lemmas):
         	if token.lemma_ not in lemmas:
                 	return False
 	
+#	print(" ".join([token.lemma_ for token in doc]))
 	return True
 
 
@@ -25,19 +26,23 @@ snlp = stanza.Pipeline(lang="ru")
 nlp = StanzaLanguage(snlp)
 
 lemmas = set()
-with open('lemmas_russian.csv', 'r') as csvfile:
-	reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+with open('lemmas_russian.csv', 'r') as infile:
+	reader = csv.reader(infile, delimiter=',', quotechar='"')
 	for row in reader:
 		lemmas.add(row[0])
 
 count = 0
-with open('sentences_russian.csv', 'r') as csvfile:
-	reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-	for row in reader:
-		sentence = row[0]
-		count+=1
-		if has_only_lemmas(row[0],lemmas):
-			print(count, sentence) 
+with open('sentences_russian.csv', 'r') as infile:
+	reader = csv.reader(infile, delimiter=',', quotechar='"')
+	with open("filtered_russian.csv", "w") as outfile:
+		writer = csv.writer(outfile, delimiter=',', quotechar='"')
+		for row in reader:
+			sentence = row[0]
+			count+=1
+			if has_only_lemmas(row[0],lemmas):
+				writer.writerow([sentence])
+				outfile.flush()				
+				print(count, sentence) 
 	
 
 # text = "Андре́й Серге́евич Арша́вин (род. 29 мая 1981[4], Ленинград) — российский футболист, бывший капитан сборной России, заслуженный мастер спорта России (2008)."
