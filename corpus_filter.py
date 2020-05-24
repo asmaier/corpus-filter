@@ -4,6 +4,10 @@ import re
 import stanza
 from spacy_stanza import StanzaLanguage
 
+LEMMAS = "lemmas_russian_a1.csv"
+SENTENCES = "sentences_russian_a1.csv" 
+FILTERED = "filtered_russian_a1.csv"
+
 
 def has_only_lemmas(text, lemmas):
 	clean_text = "".join(c for c in text if c.isalpha() or c == " ")
@@ -26,15 +30,15 @@ snlp = stanza.Pipeline(lang="ru")
 nlp = StanzaLanguage(snlp)
 
 lemmas = set()
-with open('lemmas_russian.csv', 'r') as infile:
+with open(LEMMAS, 'r') as infile:
 	reader = csv.reader(infile, delimiter=',', quotechar='"')
 	for row in reader:
 		lemmas.add(row[0])
 
 count = 0
-with open('sentences_russian.csv', 'r') as infile:
+with open(SENTENCES, 'r') as infile:
 	reader = csv.reader(infile, delimiter=',', quotechar='"')
-	with open("filtered_russian.csv", "w") as outfile:
+	with open(FILTERED, "w") as outfile:
 		writer = csv.writer(outfile, delimiter=',', quotechar='"')
 		for row in reader:
 			sentence = row[0]
@@ -45,14 +49,3 @@ with open('sentences_russian.csv', 'r') as infile:
 				print(count, sentence) 
 	
 
-# text = "Андре́й Серге́евич Арша́вин (род. 29 мая 1981[4], Ленинград) — российский футболист, бывший капитан сборной России, заслуженный мастер спорта России (2008)."
-# clean_text = "".join(c for c in text if c.isalpha() or c == " ")
-# clean_text_2 = " ".join(clean_text.split())
-
-# doc = nlp(clean_text_2)
-
-# for token in doc:
-#	print(token, token.lemma_)
-#	if token.lemma_ not in lemmas:
-#		print(token.lemma_)
-#	# print(token, token.lemma, token.lemma_)
