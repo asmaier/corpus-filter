@@ -22,9 +22,9 @@ def has_only_lemmas(text, lemmas):
 if __name__ == "__main__":
 
 	parser = argparse.ArgumentParser(description="Corpus filter - filters a corpus of sentences according to a white list of lemmas.")
-	parser.add_argument("lemmas", type=str, help="Lemmas file - white list of lemmas as csv file")
-	parser.add_argument("input", type=str, help="Input file - list of sentences as csv file")
-	parser.add_argument("output", type=str, help="Output file - filtered list of sentences as csv file")
+	parser.add_argument("lemmas", type=str, help="Lemmas file - white list of lemmas as csv file (single column)")
+	parser.add_argument("input", type=str, help="Input file - list of sentences as csv file (single column)")
+	parser.add_argument("output", type=str, help="Output file - filtered list of sentences as csv file (single column)")
 	args = parser.parse_args()
 	
 	LEMMAS = args.lemmas
