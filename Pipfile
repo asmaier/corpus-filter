@@ -7,9 +7,9 @@ verify_ssl = true
 
 [packages]
 stanza = "*"
-spacy = "*"
+spacy = "<3.0"
 spacy-stanza = "*"
 pymorphy2 = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"

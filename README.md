@@ -29,14 +29,16 @@ See also:
     lemmas.
 
     positional arguments:
-      lemmas      Lemmas file - white list of lemmas as csv file (single column)
-      input       Input file - list of sentences as csv file (single column)
-      output      Output file - filtered list of sentences as csv file (single column)
+      lemmas      Lemmas file - white list of lemmas as txt or csv file (single
+                  column)
+      input       Input file - list of sentences as txt or csv file (single
+                  column)
+      output      Output file - filtered list of sentences as txt file
 
     optional arguments:
       -h, --help  show this help message and exit
 
 # Example
 
-    python corpus_filter.py lemmas_russian.csv sentences_russian.csv output.csv
+    python corpus_filter.py lemmas_russian.txt sentences_russian.txt output.txt
 
